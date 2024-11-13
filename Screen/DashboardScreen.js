@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { StatisticsGraphWeek } from './StatisticsScreen';
+import data from '../Config/data.json';
 
 // Composant Dashboard
 export default function DashboardScreen() {
@@ -12,11 +13,11 @@ export default function DashboardScreen() {
       <View style={styles.cardContainer}>
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Vibration Level</Text>
-          <Text style={styles.cardValue}>0.36 Hz</Text>
+          <Text style={styles.cardValue}>{data.nodes[0].vibration_level} Hz</Text>
         </View>
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Sound Level</Text>
-          <Text style={styles.cardValue}>20.01 dB</Text>
+          <Text style={styles.cardValue}>{data.mean_values.sound_level} dB</Text>
         </View>
         <View style={styles.card}>
           <Text style={styles.cardTitle}>Water Usage</Text>
