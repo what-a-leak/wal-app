@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatisticsGraphWeek } from './StatisticsScreen';
 import data from '../Config/data.json';
-import NodeInfo from './NodeInfo';
 
 // Composant Dashboard
 export default function DashboardScreen({ navigation }) {

@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
       },
       cardValue: {
         fontSize: 30,
-        color: '#3F51B5',
+        color: '#6A0DAB',
         fontWeight: 'bold',
       },
 });

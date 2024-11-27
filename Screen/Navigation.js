@@ -7,6 +7,7 @@ import DashboardScreen from './DashboardScreen';
 import ProfileScreen from './ProfileScreen';
 import LeakScreen from './LeakScreen';
 import NodeInfo from './NodeInfo';
+import HomeScreen from './HomeScreen';
 import StatisticsScreen from './StatisticsScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -16,8 +17,9 @@ const Navigation = () => {
   return (
     <NavigationContainer>
       <Tab.Navigator
-            initialRouteName="DashboardScreen"
-            screenOptions={{headerStyle: {backgroundColor: '#3F51B5',},headerTintColor: '#fff',tabBarLabel: () => null, tabBarStyle: {backgroundColor: '#3F51B5',}}}>
+            initialRouteName="HomeScreen"
+            screenOptions={{headerStyle: {backgroundColor: '#6A0DAB',},headerTintColor: '#fff',tabBarLabel: () => null, tabBarStyle: {backgroundColor: '#6A0DAB',}}}>
+
 
         {/* <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{tabBarIcon: ({focused})=> (
           <Icon name="user" size={24} color={focused ? 'grey' : 'white'}/>
@@ -43,7 +45,8 @@ const Navigation = () => {
           <Icon name="bar-chart" size={24} color={focused ? 'grey' : 'white'}/>
           ),
         }}/>
-
+        
+        <Tab.Screen name="HomeScreen" component={HomeScreen} options={{tabBarButton: () => null, tabBarStyle: { display: 'none' }, headerShown: false}}/>
         <Tab.Screen name="NodeInfo1" component={NodeInfo} initialParams={{ nodeNumber: 0 }} options={{tabBarButton: () => null}}/>
         <Tab.Screen name="NodeInfo2" component={NodeInfo} initialParams={{ nodeNumber: 1 }} options={{tabBarButton: () => null}}/>
         <Tab.Screen name="NodeInfo3" component={NodeInfo} initialParams={{ nodeNumber: 2 }} options={{tabBarButton: () => null}}/>

@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   contactButton: {
-    backgroundColor: '#3F51B5',
+    backgroundColor: '#6A0DAB',
     borderRadius: 20,
     paddingVertical: 10,
     paddingHorizontal: 20,

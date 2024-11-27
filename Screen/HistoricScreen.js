@@ -15,7 +15,7 @@ export default function NodeHistoryScreen({ navigation }) {
         <View style={[styles.line, styles.lineHorizontal, { top: '50%' }]} />
         <View style={[styles.line, styles.lineDiagonalReversed, { top: '70%' }]} />
 
-        /* Node Positions */
+        {/* Node Positions */}
           <View style={[styles.node, { top: '7%', left: '70%', backgroundColor: data.nodes[0].leak_detected ? 'red' : '#1A237E' }]}>
             <Text style={styles.nodeText}>1</Text>
           </View>

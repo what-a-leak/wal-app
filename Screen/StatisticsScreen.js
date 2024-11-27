@@ -1,4 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import React, { useState } from 'react';
 import { Dimensions } from 'react-native';
@@ -6,39 +5,16 @@ import { LineChart } from 'react-native-chart-kit';
 
 export default function StatisticsScreen() {
   const [selectedGraph, setSelectedGraph] = useState('year');
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-  const [currentWeek, setCurrentWeek] = useState(getCurrentWeek());
-  const currentYear = new Date().getFullYear();
-
-  const handlePreviousMonth = () => {
-    setCurrentMonth((prevMonth) => (prevMonth === 0 ? 11 : prevMonth - 1));
-  };
-
-  const handleNextMonth = () => {
-    if (currentMonth < new Date().getMonth() || currentYear < new Date().getFullYear()) {
-      setCurrentMonth((prevMonth) => (prevMonth === 11 ? 0 : prevMonth + 1));
-    }
-  };
-
-  const handlePreviousWeek = () => {
-    setCurrentWeek((prevWeek) => (prevWeek === 1 ? 52 : prevWeek - 1));
-  };
 
 
   return (
     <View style={styles.container}>
       {selectedGraph === 'year' && <StatisticsGraphYear />}
       {selectedGraph === 'month' && (
-        <StatisticsGraphMonth
-          currentMonth={currentMonth}
-          handlePreviousMonth={handlePreviousMonth}
-          handleNextMonth={handleNextMonth}
-        />
+        <StatisticsGraphMonth/>
       )}
       {selectedGraph === 'week' && (
-        <StatisticsGraphWeek
-          currentWeek={currentWeek}
-        />
+        <StatisticsGraphWeek/>
       )}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -72,10 +48,11 @@ function StatisticsGraphYear() {
         data={{
           labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
           datasets: [
-            { data: [100, 200, 300, 450, 250, 200, 300, 450, 450, 450, 470, 450] }
+            { data: [26, 32, 42, 13, 25, 43, 123, 132, 29, 45, 0, 0] }
           ]
         }}
         {...graphStyle()}
+        yAxisSuffix='H'
       />
     </View>
   );
@@ -94,46 +71,34 @@ export function StatisticsGraphWeek() {
               ]
             }}
             {...graphStyle()}
+            yAxisSuffix='H'
           />
         </View>
       </View>
     );
   }
 
-function getCurrentWeek() {
-    const currentDate = new Date();
-    const startDate = new Date(currentDate.getFullYear(), 0, 1);
-    const days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
-    return Math.ceil(days / 7);
-  }
 
-function StatisticsGraphMonth({ currentMonth, handlePreviousMonth, handleNextMonth }) {
-  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  const isNextDisabled = currentMonth === new Date().getMonth();
-
+function StatisticsGraphMonth() {
 return (
-    <View style={styles.chartContainer}>
-        <Text style={styles.chartTitle}>Monthly Consumption - {monthNames[currentMonth]}</Text>
-        <View style={styles.navigationContainer}>
-            <TouchableOpacity onPress={handlePreviousMonth}>
-                <Text style={styles.navigationText}>{"<"}</Text>
-            </TouchableOpacity>
-            <LineChart
-                data={{
-                    labels: ["1", "5", "10", "15", "20", "25", "30"],
-                    datasets: [
-                        { data: Array.from({ length: 31 }, () => Math.floor(Math.random() * 500)) }
-                    ]
-                }}
-                {...graphStyle()}
-                xLabelsOffset={-10}
-                xAxisLabelRotation={90}
-            />
-            <TouchableOpacity onPress={handleNextMonth} disabled={isNextDisabled}>
-                <Text style={[styles.navigationText, isNextDisabled && styles.disabledText]}>{">"}</Text>
-            </TouchableOpacity>
-        </View>
+  <View style={styles.chartContainer}>
+    <Text style={styles.chartTitle}>Monthly Consumption</Text>
+    <View style={styles.navigationContainer}>
+      <LineChart
+        data={{
+          labels: ["1", "5", "10", "15", "20", "25", "30"],
+          datasets: [
+            { data: Array.from({ length: 31 }, () => Math.floor(Math.random() * 25)) }
+          ]
+        }}
+        {...graphStyle()}
+        xLabelsOffset={-10}
+        xAxisLabelRotation={90}
+        yAxisSuffix='H'
+
+      />
     </View>
+  </View>
 );
 }
 
@@ -182,7 +147,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   selectedButton: {
-    backgroundColor: '#3F51B5',
+    backgroundColor: '#6A0DAB',
   },
   buttonText: {
     color: '#fff',
