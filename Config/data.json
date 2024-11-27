@@ -22,19 +22,19 @@
                 "per_week": 280,
                 "per_month": 1200
             },
-            "leak_detected": true
+            "leak_detected": false
         },
         {
             "id": 3,
-            "vibration_level": 0.35,
-            "sound_level": 4,
+            "vibration_level": 2.35,
+            "sound_level": 11,
             "water_usage": {
                 "total": 1800,
-                "per_day": 60,
+                "per_day": 102,
                 "per_week": 420,
                 "per_month": 1800
             },
-            "leak_detected": false
+            "leak_detected": true
         }
     ],
     "mean_values": {

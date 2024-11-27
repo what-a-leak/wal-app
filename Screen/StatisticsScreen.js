@@ -24,11 +24,6 @@ export default function StatisticsScreen() {
     setCurrentWeek((prevWeek) => (prevWeek === 1 ? 52 : prevWeek - 1));
   };
 
-  const handleNextWeek = () => {
-    if (currentWeek < getCurrentWeek() || currentYear < new Date().getFullYear()) {
-      setCurrentWeek((prevWeek) => (prevWeek === 52 ? 1 : prevWeek + 1));
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -43,8 +38,6 @@ export default function StatisticsScreen() {
       {selectedGraph === 'week' && (
         <StatisticsGraphWeek
           currentWeek={currentWeek}
-          handlePreviousWeek={handlePreviousWeek}
-          handleNextWeek={handleNextWeek}
         />
       )}
       <View style={styles.buttonContainer}>
@@ -88,30 +81,20 @@ function StatisticsGraphYear() {
   );
 }
 
-export function StatisticsGraphWeek({ currentWeek, handlePreviousWeek, handleNextWeek, enableNavigation = true }) {
+export function StatisticsGraphWeek() {
     return (
       <View style={styles.chartContainer}>
-        <Text style={styles.chartTitle}>Weekly Consumption - Week {currentWeek}</Text>
+        <Text style={styles.chartTitle}>Weekly Consumption</Text>
         <View style={styles.navigationContainer}>
-          {enableNavigation && (
-          <TouchableOpacity onPress={handlePreviousWeek}>
-            <Text style={styles.navigationText}>{"<"}</Text>
-          </TouchableOpacity>
-          )}
           <LineChart
             data={{
               labels: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
               datasets: [
-                { data: [320, 170, 220, 200, 0, 300, 150] }
+                { data: [2, 0, 3, 5, 22, 22, 22] }
               ]
             }}
             {...graphStyle()}
           />
-          {enableNavigation && (
-          <TouchableOpacity onPress={handleNextWeek} disabled={currentWeek === getCurrentWeek()}>
-            <Text style={[styles.navigationText, currentWeek === getCurrentWeek() && styles.disabledText]}>{">"}</Text>
-          </TouchableOpacity>
-        )}
         </View>
       </View>
     );

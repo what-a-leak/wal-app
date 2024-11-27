@@ -6,6 +6,7 @@ import HistoricScreen from './HistoricScreen';
 import DashboardScreen from './DashboardScreen';
 import ProfileScreen from './ProfileScreen';
 import LeakScreen from './LeakScreen';
+import NodeInfo from './NodeInfo';
 import StatisticsScreen from './StatisticsScreen';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -18,10 +19,10 @@ const Navigation = () => {
             initialRouteName="DashboardScreen"
             screenOptions={{headerStyle: {backgroundColor: '#3F51B5',},headerTintColor: '#fff',tabBarLabel: () => null, tabBarStyle: {backgroundColor: '#3F51B5',}}}>
 
-        <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{tabBarIcon: ({focused})=> (
+        {/* <Tab.Screen name="ProfileScreen" component={ProfileScreen} options={{tabBarIcon: ({focused})=> (
           <Icon name="user" size={24} color={focused ? 'grey' : 'white'}/>
           ),
-        }}/>
+        }}/> */}
 
         <Tab.Screen name="HistoricScreen" component={HistoricScreen} options={{tabBarIcon: ({focused})=> (
           <Icon name="history" size={24} color={focused ? 'grey' : 'white'}/>
@@ -43,6 +44,9 @@ const Navigation = () => {
           ),
         }}/>
 
+        <Tab.Screen name="NodeInfo1" component={NodeInfo} initialParams={{ nodeNumber: 0 }} options={{tabBarButton: () => null}}/>
+        <Tab.Screen name="NodeInfo2" component={NodeInfo} initialParams={{ nodeNumber: 1 }} options={{tabBarButton: () => null}}/>
+        <Tab.Screen name="NodeInfo3" component={NodeInfo} initialParams={{ nodeNumber: 2 }} options={{tabBarButton: () => null}}/>
       </Tab.Navigator>
     </NavigationContainer>
   );

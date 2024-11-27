@@ -1,8 +1,9 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import data from '../Config/data.json';
 
 // Component for Node History Screen
-export default function NodeHistoryScreen() {
+export default function NodeHistoryScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* Map Container */}
@@ -14,27 +15,27 @@ export default function NodeHistoryScreen() {
         <View style={[styles.line, styles.lineHorizontal, { top: '50%' }]} />
         <View style={[styles.line, styles.lineDiagonalReversed, { top: '70%' }]} />
 
-        {/* Node Positions */}
-        <View style={[styles.node, { top: '7%', left: '70%' }]}>
-          <Text style={styles.nodeText}>1</Text>
-        </View>
-        <View style={[styles.node, { top: '47%', left: '50%' }]}>
-          <Text style={styles.nodeText}>2</Text>
-        </View>
-        <View style={[styles.node, { top: '82%', left: '20%' }]}>
-          <Text style={styles.nodeText}>3</Text>
-        </View>
-      </View>
+        /* Node Positions */
+          <View style={[styles.node, { top: '7%', left: '70%', backgroundColor: data.nodes[0].leak_detected ? 'red' : '#1A237E' }]}>
+            <Text style={styles.nodeText}>1</Text>
+          </View>
+          <View style={[styles.node, { top: '47%', left: '50%', backgroundColor: data.nodes[1].leak_detected ? 'red' : '#1A237E' }]}>
+            <Text style={styles.nodeText}>2</Text>
+          </View>
+          <View style={[styles.node, { top: '82%', left: '20%', backgroundColor: data.nodes[2].leak_detected ? 'red' : '#1A237E' }]}>
+            <Text style={styles.nodeText}>3</Text>
+          </View>
+              </View>
 
-      {/* Buttons for each Node */}
+              {/* Buttons for each Node */}
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.nodeButton}>
+        <TouchableOpacity style={[styles.nodeButton, { backgroundColor: data.nodes[0].leak_detected ? 'red' : '#1A237E' }]}onPress={() => navigation.navigate('NodeInfo1')}>
           <Text style={styles.buttonText}>Node 1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.nodeButton}>
+        <TouchableOpacity style={[styles.nodeButton, { backgroundColor: data.nodes[1].leak_detected ? 'red' : '#1A237E' }]}onPress={() => navigation.navigate('NodeInfo2')}>
           <Text style={styles.buttonText}>Node 2</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.nodeButton}>
+        <TouchableOpacity style={[styles.nodeButton, { backgroundColor: data.nodes[2].leak_detected ? 'red' : '#1A237E' }]}onPress={() => navigation.navigate('NodeInfo3')}>
           <Text style={styles.buttonText}>Node 3</Text>
         </TouchableOpacity>
       </View>

@@ -1,50 +1,67 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatisticsGraphWeek } from './StatisticsScreen';
 import data from '../Config/data.json';
+import NodeInfo from './NodeInfo';
 
 // Composant Dashboard
-export default function DashboardScreen() {
-  const [currentWeek, setCurrentWeek] = useState(getCurrentWeek());
+export default function DashboardScreen({ navigation }) {
+
+  const allLeaksDetected = data.nodes.every(node => !node.leak_detected);
 
   return (
     <View style={styles.container}>
-      {/* Cartes d'informations */}
-      <View style={styles.cardContainer}>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Vibration Level</Text>
-          <Text style={styles.cardValue}>{data.nodes[0].vibration_level} Hz</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Sound Level</Text>
-          <Text style={styles.cardValue}>{data.mean_values.sound_level} dB</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Water Usage</Text>
-          <Text style={styles.cardValue}>300L tdy</Text>
-        </View>
-        <View style={styles.card}>
-          <Text style={styles.cardTitle}>Leak Alert</Text>
-          <Text style={styles.cardValue}>NO</Text>
-        </View>
+      {/* Nodes */}
+      <View style={styles.nodeContainer}>
+        <TouchableOpacity
+          style={[
+            styles.node,
+            { backgroundColor: data.nodes[0].leak_detected ? 'red' : 'green' },
+          ]}
+          onPress={() => navigation.navigate('NodeInfo1')}
+        >
+          <Text style={styles.nodeText}>Node 1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.node,
+            { backgroundColor: data.nodes[1].leak_detected ? 'red' : 'green' },
+          ]}
+          onPress={() => navigation.navigate('NodeInfo2')}
+        >
+          <Text style={styles.nodeText}>Node 2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={[
+            styles.node,
+            { backgroundColor: data.nodes[2].leak_detected ? 'red' : 'green' },
+          ]}
+          onPress={() => navigation.navigate('NodeInfo3')}
+        >
+          <Text style={styles.nodeText}>Node 3</Text>
+        </TouchableOpacity>
       </View>
-      <StatisticsGraphWeek enableNavigation={false} />
+
+      {/* Leak Detection */}
+      <Text style={[styles.leakText, { color: allLeaksDetected ? 'green' : 'red' }]}>
+        {allLeaksDetected ? 'No Leak Detected' : 'Leak Detected'}
+      </Text>
+      
+      {/* Statistics Graph */}
+      <View style={{ marginTop: 200 }}>
+        <StatisticsGraphWeek enableNavigation={false} />
+      </View>
     </View>
   );
 }
-function getCurrentWeek() {
-  const currentDate = new Date();
-  const startDate = new Date(currentDate.getFullYear(), 0, 1);
-  const days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
-  return Math.ceil(days / 7);
-}
+
 // Styles
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#e0f7fa',
+    flexGrow: 1,
+    backgroundColor: '#fff',
     alignItems: 'center',
-    top : 20,
+    paddingBottom: 20,
   },
   cardContainer: {
     flexDirection: 'row',
@@ -69,5 +86,29 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: 'green',
     fontWeight: 'bold',
+  },
+  nodeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginVertical: 20,
+    width: '90%',
+  },
+  node: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  nodeText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  leakText: {
+    fontSize: 18,
+    color: 'red',
+    fontWeight: 'bold',
+    marginBottom: 20,
   },
 });
