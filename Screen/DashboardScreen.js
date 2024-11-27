@@ -47,8 +47,8 @@ export default function DashboardScreen({ navigation }) {
       </Text>
       
       {/* Statistics Graph */}
-      <View style={{ marginTop: 200 }}>
-        <StatisticsGraphWeek enableNavigation={false} />
+      <View style={{ marginTop: 150 }}>
+        <StatisticsGraphWeek/>
       </View>
     </View>
   );
@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     width: 80,
     height: 80,
     borderRadius: 40,
+    marginTop: 20, 
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -105,9 +106,8 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   leakText: {
-    fontSize: 18,
-    color: 'red',
+    fontSize: 25,
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginTop: 50, 
   },
 });

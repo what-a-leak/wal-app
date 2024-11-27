@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import { Linking } from 'react-native';
 
 export default function LeakHistoryScreen() {
   return (
@@ -27,9 +28,11 @@ export default function LeakHistoryScreen() {
       </ScrollView>
 
       {/* Bouton de contact */}
-      <TouchableOpacity style={styles.contactButton}>
-        <Text style={styles.contactButtonText}>Contact a Professional</Text>
-      </TouchableOpacity>
+    <TouchableOpacity
+      style={styles.contactButton}
+      onPress={() => Linking.openURL('tel:+33679791782')}>
+      <Text style={styles.contactButtonText}>Contact a Professional</Text>
+    </TouchableOpacity>
     </View>
   );
 }

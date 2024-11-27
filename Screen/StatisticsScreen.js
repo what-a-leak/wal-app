@@ -9,6 +9,7 @@ export default function StatisticsScreen() {
 
   return (
     <View style={styles.container}>
+      <Text style={styles.chartTitle}>Water Consumption</Text>
       {selectedGraph === 'year' && <StatisticsGraphYear />}
       {selectedGraph === 'month' && (
         <StatisticsGraphMonth/>
@@ -43,7 +44,6 @@ export default function StatisticsScreen() {
 function StatisticsGraphYear() {
   return (
     <View style={styles.chartContainer}>
-      <Text style={styles.chartTitle}>Yearly Consumption</Text>
       <LineChart
         data={{
           labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
@@ -61,7 +61,6 @@ function StatisticsGraphYear() {
 export function StatisticsGraphWeek() {
     return (
       <View style={styles.chartContainer}>
-        <Text style={styles.chartTitle}>Weekly Consumption</Text>
         <View style={styles.navigationContainer}>
           <LineChart
             data={{
@@ -82,7 +81,6 @@ export function StatisticsGraphWeek() {
 function StatisticsGraphMonth() {
 return (
   <View style={styles.chartContainer}>
-    <Text style={styles.chartTitle}>Monthly Consumption</Text>
     <View style={styles.navigationContainer}>
       <LineChart
         data={{
@@ -108,8 +106,8 @@ function graphStyle() {
     height: 220,
     chartConfig: {
       backgroundColor: "#e0f7fa",
-      backgroundGradientFrom: "#80d8ff",
-      backgroundGradientTo: "#80d8ff",
+      backgroundGradientFrom: "#F0d8ff", //87CEFA
+      backgroundGradientTo: "#F0d8ff",
       decimalPlaces: 0,
       color: (opacity = 1) => `rgba(0, 0, 128, ${opacity})`,
       style: { borderRadius: 16 }
@@ -133,6 +131,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    marginTop: 20,
   },
   buttonContainer: {
     flexDirection: 'row',

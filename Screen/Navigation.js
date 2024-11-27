@@ -36,15 +36,16 @@ const Navigation = () => {
           ),
         }}/>
 
+        <Tab.Screen name="StatisticsScreen" component={StatisticsScreen} options={{tabBarIcon: ({focused})=> (
+          <Icon name="bar-chart" size={24} color={focused ? 'grey' : 'white'}/>
+          ),
+        }}/>
+
         <Tab.Screen name="LeakScreen" component={LeakScreen} options={{tabBarIcon: ({focused})=> (
           <Icon name="exclamation-triangle" size={24} color={focused ? 'grey' : 'white'}/>
           ),
         }}/>
 
-        <Tab.Screen name="StatisticsScreen" component={StatisticsScreen} options={{tabBarIcon: ({focused})=> (
-          <Icon name="bar-chart" size={24} color={focused ? 'grey' : 'white'}/>
-          ),
-        }}/>
         
         <Tab.Screen name="HomeScreen" component={HomeScreen} options={{tabBarButton: () => null, tabBarStyle: { display: 'none' }, headerShown: false}}/>
         <Tab.Screen name="NodeInfo1" component={NodeInfo} initialParams={{ nodeNumber: 0 }} options={{tabBarButton: () => null}}/>
