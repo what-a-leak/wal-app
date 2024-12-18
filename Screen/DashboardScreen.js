@@ -15,7 +15,7 @@ export default function DashboardScreen({ navigation }) {
         <TouchableOpacity
           style={[
             styles.node,
-            { backgroundColor: data.nodes[0].leak_detected ? 'red' : 'green' },
+            { backgroundColor: data.nodes[0].leak_detected ? 'red' : '#45a049' },
           ]}
           onPress={() => navigation.navigate('NodeInfo1')}
         >
@@ -24,7 +24,7 @@ export default function DashboardScreen({ navigation }) {
         <TouchableOpacity
           style={[
             styles.node,
-            { backgroundColor: data.nodes[1].leak_detected ? 'red' : 'green' },
+            { backgroundColor: data.nodes[1].leak_detected ? 'red' : '#45a049' },
           ]}
           onPress={() => navigation.navigate('NodeInfo2')}
         >
@@ -33,7 +33,7 @@ export default function DashboardScreen({ navigation }) {
         <TouchableOpacity
           style={[
             styles.node,
-            { backgroundColor: data.nodes[2].leak_detected ? 'red' : 'green' },
+            { backgroundColor: data.nodes[2].leak_detected ? 'red' : '#45a049' },
           ]}
           onPress={() => navigation.navigate('NodeInfo3')}
         >
