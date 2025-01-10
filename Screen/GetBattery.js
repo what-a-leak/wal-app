@@ -26,7 +26,7 @@ export default function GetBattery({ nodeNumber }) {
         <View style={styles.container}>
             <Icon name={batteryIcon} size={24} color={batteryColor} style={styles.icon} />
             <Text style={[styles.infoValue, { color: batteryColor }]}>
-                {batteryLevel} %
+                {batteryLevel}%
             </Text>
         </View>
     );

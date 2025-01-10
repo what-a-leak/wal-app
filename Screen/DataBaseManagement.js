@@ -1,27 +1,41 @@
-const axios = require('axios');
+const { Client } = require('ssh2');
 const fs = require('fs');
 const path = require('path');
 
-// URL of the JSON data on the server
-const DATA_URL = 'http://90.89.133.173/home/wal/wal-database-process/all_tables.json';
+// Configuration SSH
+const sshConfig = {
+  host: '90.89.133.173',
+  port: 22,
+  username: 'wal',
+  privateKey: fs.readFileSync('C:\\Users\\cedri\\.ssh\\id_rsa'),
+};
 
-// Path to the local JSON file
+// Chemin du fichier JSON sur le serveur distant
+const REMOTE_JSON_PATH = '/home/wal/wal-database-process/all_tables.json';
+
+// Chemin du fichier JSON local
 const LOCAL_JSON_PATH = path.join(__dirname, '../Config/data.json');
 
-// Function to fetch data from the server and update the local JSON file
-async function updateLocalData() {
-  try {
-    // Fetch data from the server
-    const response = await axios.get(DATA_URL);
-    const data = response.data;
-
-    // Write the data to the local JSON file
-    fs.writeFileSync(LOCAL_JSON_PATH, JSON.stringify(data, null, 2), 'utf8');
-    console.log('Local data updated successfully.');
-  } catch (error) {
-    console.error('Error updating local data:', error);
-  }
+// Fonction pour mettre à jour le fichier JSON local
+function updateLocalData() {
+  const conn = new Client();
+  conn.on('ready', () => {
+    console.log('Client :: ready');
+    conn.sftp((err, sftp) => {
+      if (err) throw err;
+      sftp.readFile(REMOTE_JSON_PATH, (err, data) => {
+        if (err) throw err;
+        fs.writeFileSync(LOCAL_JSON_PATH, data, 'utf8');
+        console.log('Local data updated successfully.');
+        conn.end();
+      });
+    });
+  }).connect(sshConfig);
 }
 
-// Call the function to update the local data
+// Appeler la fonction pour mettre à jour les données locales
 updateLocalData();
+
+//cd c:/INSA/S9/APP/wal-app/Screen
+// node DataBaseManagement.js
+// DataBase in config is updated
