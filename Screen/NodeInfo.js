@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import data from '../Config/data.json';
+import data from '../Config/data_init.json';
 
 
 const NodeInfo = ({ route }) => {

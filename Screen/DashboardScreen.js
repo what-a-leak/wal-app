@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatisticsGraphWeek } from './StatisticsScreen';
-import data from '../Config/data.json';
+import data from '../Config/data_init.json';
 import GetBattery from './GetBattery';
 
 export default function DashboardScreen({ navigation }) {

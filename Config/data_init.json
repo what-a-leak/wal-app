@@ -1,0 +1,54 @@
+{
+    "nodes": [
+        {
+            "id": 1,
+            "vibration_level": 0.15,
+            "sound_level": 3,
+            "batterylevel": 25,
+            "water_usage": {
+                "total": 1500,
+                "per_day": 50,
+                "per_week": 350,
+                "per_month": 1500
+            },
+            "leak_detected": false
+        },
+        {
+            "id": 2,
+            "vibration_level": 0.25,
+            "sound_level": 2,
+            "batterylevel": 10,
+            "water_usage": {
+                "total": 1200,
+                "per_day": 40,
+                "per_week": 280,
+                "per_month": 1200
+            },
+            "leak_detected": false
+        },
+        {
+            "id": 3,
+            "vibration_level": 2.35,
+            "sound_level": 11,
+            "batterylevel": 89,
+            "water_usage": {
+                "total": 1800,
+                "per_day": 102,
+                "per_week": 420,
+                "per_month": 1800
+            },
+            "leak_detected": true
+        }
+    ],
+    "mean_values": {
+        "vibration_level": 0.25,
+        "sound_level": 20.01,
+        "batterylevel": 41,
+        "water_usage": {
+            "total": 1500,
+            "per_day": 50,
+            "per_week": 350,
+            "per_month": 1500
+        }
+    }
+    }

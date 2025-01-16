@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import data from '../Config/data.json';
+import data from '../Config/data_init.json';
 
 // Component for Node History Screen
 export default function NodeHistoryScreen({ navigation }) {

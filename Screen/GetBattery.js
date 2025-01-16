@@ -4,7 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import data from '../Config/data.json';
 
 export default function GetBattery({ nodeNumber }) {
-    const batteryLevel = data.nodes[nodeNumber].batterylevel;
+    const node = data.find(node => node.NodeID === nodeNumber + 1);
+    const batteryLevel = node ? node.Batterie : null;
     let batteryIcon = 'battery-full';
     let batteryColor = '#45a049';
 
