@@ -1,18 +1,28 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import data from '../Config/data_init.json';
-
+import data from '../config/data.json';
 
 const NodeInfo = ({ route }) => {
   const { nodeNumber } = route.params;
+  const node = data.find(node => node.NodeID === nodeNumber + 1 );
+
+  // Fonction pour formater le timestamp
+  const formatTimestamp = (timestamp) => {
+    const date = new Date(timestamp);
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Les mois commencent à 0
+    const year = date.getFullYear();
+    const hours = String(date.getHours()).padStart(2, '0');
+    const minutes = String(date.getMinutes()).padStart(2, '0');
+    return `${day}-${month}-${year} ${hours}:${minutes}`;
+  };
 
   return (
     <View style={styles.container}>
-
       {/* Node Name */}
       <View style={styles.nodeNameContainer}>
         <View style={styles.nodeCircle}>
-          <Text style={styles.nodeCircleText}>Node {nodeNumber+1}</Text>
+          <Text style={styles.nodeCircleText}>Node {nodeNumber + 1}</Text>
         </View>
       </View>
 
@@ -20,37 +30,28 @@ const NodeInfo = ({ route }) => {
       <View style={styles.infoContainer}>
         <View style={styles.infoRow}>
           <View style={styles.infoButton}>
-            <Text style={styles.infoButtonText}>Vibration Level</Text>
+            <Text style={styles.infoButtonText}>Last Update</Text>
           </View>
-          <Text style={[
-            styles.infoValue, 
-            data.nodes[nodeNumber].vibration_level > 2 && { color: 'red' }
-          ]}>
-            {data.nodes[nodeNumber].vibration_level} Hz
+          <Text style={styles.infoValue}>
+            {formatTimestamp(node.TimeStamp)}
           </Text>
         </View>
 
         <View style={styles.infoRow}>
           <View style={styles.infoButton}>
-            <Text style={styles.infoButtonText}>Sound Level</Text>
+            <Text style={styles.infoButtonText}>Battery Level</Text>
           </View>
-          <Text style={[
-            styles.infoValue, 
-            data.nodes[nodeNumber].sound_level > 10 && { color: 'red' }
-          ]}>
-            {data.nodes[nodeNumber].sound_level} dB
+          <Text style={styles.infoValue}>
+            {node.Batterie} %
           </Text>
         </View>
 
         <View style={styles.infoRow}>
           <View style={styles.infoButton}>
-            <Text style={styles.infoButtonText}>Daily Water Usage</Text>
+            <Text style={styles.infoButtonText}>Sensor Measure</Text>
           </View>
-          <Text style={[
-            styles.infoValue, 
-            data.nodes[nodeNumber].water_usage.per_day > 100 && { color: 'red' }
-          ]}>
-            {data.nodes[nodeNumber].water_usage.per_day} L
+          <Text style={styles.infoValue}>
+            {node.MesureCapteur}
           </Text>
         </View>
 
@@ -60,9 +61,9 @@ const NodeInfo = ({ route }) => {
           </View>
           <Text style={[
             styles.infoValue, 
-            data.nodes[nodeNumber].leak_detected && { color: 'red' }
+            node.Status === 1 && { color: 'red' }
           ]}>
-            {data.nodes[nodeNumber].leak_detected ? 'Yes' : 'No'}
+            {node.Status === 1 ? 'Leak Detected' : 'No Leak'}
           </Text>
         </View>
       </View>
@@ -74,17 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  header: {
-    width: '100%',
-    backgroundColor: '#002B5C',
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  headerText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: 'bold',
+    padding: 20,
   },
   nodeNameContainer: {
     alignItems: 'center',
@@ -111,12 +102,15 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginVertical: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ddd',
+    paddingBottom: 10,
   },
   infoButton: {
     backgroundColor: '#007AFF',
     padding: 10,
     borderRadius: 10,
-    width: '60%',
+    width: '45%',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -129,12 +123,8 @@ const styles = StyleSheet.create({
     color: 'green',
     fontWeight: 'bold',
     fontSize: 16,
-  },
-  errorText: {
-    fontSize: 18,
-    color: 'red',
-    textAlign: 'center',
-    marginTop: 20,
+    width: '45%',
+    textAlign: 'right',
   },
 });
 

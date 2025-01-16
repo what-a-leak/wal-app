@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import data from '../Config/data.json';
+import data from '../config/data.json';
 
 export default function GetBattery({ nodeNumber }) {
     const node = data.find(node => node.NodeID === nodeNumber + 1);

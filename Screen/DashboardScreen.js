@@ -1,22 +1,22 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StatisticsGraphWeek } from './StatisticsScreen';
-import data from '../Config/data_init.json';
+import data from '../config/data.json';
 import GetBattery from './GetBattery';
 
 export default function DashboardScreen({ navigation }) {
-  const allLeaksDetected = data.nodes.every(node => !node.leak_detected);
+    const allLeaksDetected = data.every(node => node.Status === 0);
 
     return (
         <View style={styles.container}>
             {/* Nodes */}
             <View style={styles.nodeContainer}>
-                {data.nodes.map((node, index) => (
+                {data.map((node, index) => (
                     <View key={index} style={styles.nodeWrapper}>
                         <TouchableOpacity
                             style={[
                                 styles.node,
-                                { backgroundColor: node.leak_detected ? 'red' : '#45a049' },
+                                { backgroundColor: node.Status === 1 ? 'red' : '#45a049' },
                             ]}
                             onPress={() => navigation.navigate(`NodeInfo${index + 1}`)}
                         >

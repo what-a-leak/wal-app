@@ -2,7 +2,7 @@
     {
         "NodeID": 1,
         "MesureCapteur": "23.5",
-        "Status": 1,
+        "Status": 0,
         "TimeStamp": "2025-01-08 14:30:00",
         "Batterie": "67",
         "Temperature": null
@@ -10,14 +10,14 @@
     {
         "NodeID": 2,
         "MesureCapteur": "23.5",
-        "Status": 1,
+        "Status": 0,
         "TimeStamp": "2025-01-08 14:30:00",
         "Batterie": "32",
         "Temperature": null
     },
     {
         "NodeID": 3,
-        "MesureCapteur": "23.5",
+        "MesureCapteur": "20.5",
         "Status": 1,
         "TimeStamp": "2025-01-08 14:30:00",
         "Batterie": "15",

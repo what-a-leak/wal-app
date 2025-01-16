@@ -14,7 +14,7 @@ const sshConfig = {
 const REMOTE_JSON_PATH = '/home/wal/wal-database-process/all_tables.json';
 
 // Chemin du fichier JSON local
-const LOCAL_JSON_PATH = path.join(__dirname, '../Config/data.json');
+const LOCAL_JSON_PATH = path.join(__dirname, '../config/data.json');
 
 // Fonction pour mettre à jour le fichier JSON local
 function updateLocalData() {
